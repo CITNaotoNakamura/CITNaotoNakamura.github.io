@@ -6,9 +6,9 @@ $(function() {
 
     $('input[type=file]').change(function() {
 
-        var subscriptionKey = "サブスクリプションID";
+        var subscriptionKey = "84c8ba31116c4406a7a5a10db0c8f0cb";
 
-        var uriBase = "https://japaneast.api.cognitive.microsoft.com/face/v1.0/detect";
+        var uriBase = "https://facesample2.cognitiveservices.azure.com/";
 
         var params = {
             "returnFaceId": "true",
