@@ -28,6 +28,7 @@
 
         // カメラコントローラーを作成
         const controls = new THREE.OrbitControls(camera);
+        controls.autoRotate = true;
 
         // helper
         const gridHelper = new THREE.GridHelper(1000,20); // size, step
@@ -54,6 +55,10 @@
         sunplane.position.set(0, 250, 0);
         scene.add( sunplane );
 
+        // starグループ
+        var stargroup = new THREE.Group();
+        scene.add(stargroup);
+
         var stargeometry = new THREE.PlaneGeometry(150,120);
         var starmat = new THREE.MeshBasicMaterial({transparent:true});
         starmat.map= startexture;
@@ -61,24 +66,21 @@
         var star1plane = new THREE.Mesh( stargeometry, starmat );
         star1plane.position.set(250, 0, 0);
         star1plane.rotation.y = 1.5708;
-        scene.add( star1plane );
+        stargroup.add( star1plane );
 
         var star2plane = new THREE.Mesh( stargeometry, starmat );
         star2plane.position.set(-250, 0, 0);
         star2plane.rotation.y = 1.5708;
-        scene.add( star2plane );
+        stargroup.add( star2plane );
 
         var star3plane = new THREE.Mesh( stargeometry, starmat );
         star3plane.position.set(0, 0, 250);
-        scene.add( star3plane );
+        stargroup.add( star3plane );
 
         var star4plane = new THREE.Mesh( stargeometry, starmat );
         star4plane.position.set(0, 0, -250);
-        scene.add( star4plane );
-
-
+        stargroup.add( star4plane );
      
-    
       　 // 光源（環境光）
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
         scene.add(ambientLight);
@@ -95,7 +97,16 @@
         // 毎フレーム時に実行されるループイベントです
         function tick() {
           // レンダリング
+         // controls.update();
+         stargroup.rotation.y += 0.01;
           renderer.render(scene, camera);
+
+          sunplane.rotation.setFromRotationMatrix(camera.matrix);
+          //stargroup.rotation.setFromRotationMatrix(camera.matrix);
+          star1plane.rotation.setFromRotationMatrix(camera.matrix);
+          star2plane.rotation.setFromRotationMatrix(camera.matrix);
+          star3plane.rotation.setFromRotationMatrix(camera.matrix);
+          star4plane.rotation.setFromRotationMatrix(camera.matrix);
           requestAnimationFrame(tick);
         }
       }

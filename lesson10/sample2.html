@@ -96,6 +96,11 @@
         function tick() {
           // レンダリング
           renderer.render(scene, camera);
+          sunplane.rotation.setFromRotationMatrix(camera.matrix);
+          star1plane.rotation.setFromRotationMatrix(camera.matrix);
+          star2plane.rotation.setFromRotationMatrix(camera.matrix);
+          star3plane.rotation.setFromRotationMatrix(camera.matrix);
+          star4plane.rotation.setFromRotationMatrix(camera.matrix);
           requestAnimationFrame(tick);
         }
       }
