@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScriptを使った素数判定</title>
+
+	<script type="text/javascript">
+ 	function hantei() {
+ 		var pflag=1;
+		var an = document.getElementById("a").value;
+		for (let i=2; i<an; i++){
+			if (an % i === 0){
+				pflag=0;
+				alert(i+"で割り切れます")
+				break;
+			}
+		}
+		if (pflag ===1) alert("素数です");
+ 	}
+	</script>
+</head>
+
+<body>
+<h1>素数の判定</h1>
+	<form>
+	   A= <input type="text" id="a" /> </br>
+	   <button type="button" onclick="hantei();"> 判定</button>
+　  </form>  
+</body>
+</html>
